@@ -8,3 +8,9 @@ class HomeView(View):
 
     # def post(self, request):
     #    pass
+
+
+class ProductDetails(View):
+    def get(self, request):
+        context = {}
+        return render(request, 'base/product_details.html',context)

@@ -69,7 +69,8 @@
       </div>
     </div>
     <!-- Search model end -->
-    {% block content %} {% endblock content %}
+    {% include "base/header.html" %} {% block content %} {% endblock content %}
+    {% include "base/footer.html" %}
 
     <!-- Js Plugins -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
