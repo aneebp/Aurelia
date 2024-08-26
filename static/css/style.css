@@ -1,35 +1,3 @@
-/******************************************************************
-  Template Name: Violet 
-  Description: Violet ecommerce Html Template
-  Author: Colorlib
-  Author URI: https://colorlib.com/
-  Version: 1.0
-  Created: Colorlib
-******************************************************************/
-
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Template default CSS
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Helper Css
-3.  Header Section
-4.  Hero Section
-5.  Feature Section
-6.  Latest Product Section
-7.  Lookbok Section
-8.  Logo Section
-9.  Footer
-10. Other Pages Style
-
--------------------------------------------------------------------*/
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
 
 html,
 body {
@@ -253,6 +221,96 @@ ol {
 
 .element:last-child {
 	margin-bottom: 0;
+}
+/* register */
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.register-section .card {
+    transition: all .4s ease;
+    margin-bottom: 10rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.register-section .card:hover {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.register-section .card a {
+    text-decoration: underline;
+}
+
+.nonfield li:first-child {
+    color: red;
+    position: absolute;
+    bottom: 103px;
+    font-size: 14px;
+}
+
+.errorlist li {
+    color: red;
+    position: absolute;
+    bottom: 94px;
+    font-size: 13px;
+}
+
+/* login */
+
+.login-section .card {
+    transition: all .4s ease;
+    margin-bottom: 13rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.login-section .card:hover {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.login-section .row {
+    flex-direction: column;
+}
+
+.login-section .form-control-lg {
+    width: 33.4rem;
+}
+
+.login-section a {
+    text-decoration: underline;
+}
+
+.form-outline .lab {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.lab .forget-pass {
+    color: #0069d9;
+    position: absolute;
+    right: -276px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.lab .forget-pass:hover {
+    transition: all .2s ease;
+    text-decoration: underline;
+    color: blue;
+}
+
+#message.hide_message {
+    display: none;
 }
 
 /*---------------------
@@ -831,7 +889,7 @@ ol {
 -----------------------*/
 
 .lookbok-left {
-	padding-top: 105px;
+	padding-top: 165px;
 }
 
 .lookbok-left .section-title {
@@ -861,6 +919,7 @@ ol {
 .lookbok-pic img {
 	min-width: 100%;
 	height: 100%;
+	margin-top: 10rem;
 }
 
 .lookbok-pic .pic-text {
@@ -2085,7 +2144,7 @@ ol {
 		margin-right: 10px;
 	}
 	.lookbok-left {
-		padding-top: 0px;
+		padding-top: 130px;
 	}
 	.lookbok-pic .pic-text {
 		font-size: 95px;

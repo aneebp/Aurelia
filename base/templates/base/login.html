@@ -1,0 +1,65 @@
+{% extends "base/main.html" %} {% block content %}
+<section class="login-section vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">SIGN IN</h3>
+
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      type="email"
+                      name="email"
+                      id="emailAddress"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="firstName">Email</label>
+                  </div>
+                </div>
+                <br />
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      type="password"
+                      name="password"
+                      id="Password"
+                      class="form-control form-control-lg"
+                    />
+                    <div class="lab">
+                      <label class="form-label" for="firstName">Password</label>
+                      <a href=""
+                        ><label class="forget-pass">Forgot Password?</label></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-2">
+                <input
+                  class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body"
+                  type="submit"
+                  value="Login"
+                />
+              </div>
+              <p class="text-center text-muted mt-5 mb-0">
+                Don't have an account?
+                <a href="{% url "register" %}" class="fw-bold text-body"><u>Sign up</u></a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

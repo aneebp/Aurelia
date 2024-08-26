@@ -1,0 +1,94 @@
+{% extends "base/main.html" %} {% block content %}
+<section class="register-section vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">SIGN UP</h3>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    {{form.first_name}}
+                    <label class="form-label" for="firstName">First Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    {{form.last_name}}
+                    <label class="form-label" for="lastName">Last Name</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    {{form.username}}
+                    <label for="birthdayDate" class="form-label"
+                      >Username</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    {{form.email}}
+                    <label for="birthdayDate" class="form-label">Email</label>
+                    <p class="error-register">{{form.email.errors}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    {{form.phone_number}}
+                    <label class="form-label" for="emailAddress"
+                      >Phone Number</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    {{form.password1}}
+                    <label class="form-label" for="phoneNumber">Password</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    {{form.password2}}
+                    <label class="form-label" for="phoneNumber"
+                      >Repeat Password</label
+                    >
+                    <p class="error-register">{{form.non_field_errors}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 pt-2">
+                <input
+                  class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body"
+                  type="submit"
+                  value="Register"
+                />
+              </div>
+              <p class="text-center text-muted mt-5 mb-0">
+                Have already an account?
+                <a href="{% url 'login' %}" class="fw-bold text-body"
+                  ><u>Login here</u></a
+                >
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
