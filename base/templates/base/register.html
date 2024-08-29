@@ -9,7 +9,14 @@
         >
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">SIGN UP</h3>
-            <form action="" method="POST">
+            {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+            <form action="{% url "register" %}" method="POST">
               {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 mb-4">

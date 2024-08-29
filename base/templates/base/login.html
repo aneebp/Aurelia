@@ -9,17 +9,25 @@
         >
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">SIGN IN</h3>
+            {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
 
-            <form action="" method="POST">
+            <form action="{% url "login" %}" method="POST">
               {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       id="emailAddress"
                       class="form-control form-control-lg"
+                      required
                     />
                     <label class="form-label" for="firstName">Email</label>
                   </div>
@@ -33,6 +41,7 @@
                       name="password"
                       id="Password"
                       class="form-control form-control-lg"
+                      required
                     />
                     <div class="lab">
                       <label class="form-label" for="firstName">Password</label>

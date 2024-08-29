@@ -4,6 +4,18 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
+class Account(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+    phone_number = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+    
+
 
 class Category(models.Model):
     title = models.CharField(max_length=100,unique=True)
