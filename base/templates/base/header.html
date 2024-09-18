@@ -12,10 +12,16 @@
           <span>2</span>
         </a>
       </div>
+      {% if user.is_authenticated %}
+      <div class="user-access">
+        <a href={% url "logout" %} class="in">Sign Out</a>
+      </div>
+      {% else %}
       <div class="user-access">
         <a href={% url "register" %}>Register</a>
         <a href="{% url "login" %}" class="in">Sign in</a>
       </div>
+      {% endif %}
       <nav class="main-menu mobile-menu">
         <ul>
           <li><a class="active" href="./index.html">Home</a></li>
