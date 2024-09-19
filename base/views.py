@@ -97,3 +97,40 @@ class ProductDetailView(View):
         
         context = {"product":product,"products":products}
         return render(request, 'base/product_details.html',context)
+    
+
+class ProductsListView(View):
+    def get(self, request):
+        products = Product.objects.all()
+
+        context = {"products":products}
+        return render(request,"base/full_product.html",context)
+    
+class ContactView(View):
+    def get(self,request):
+        context = {}
+        return render(request,'base/contact.html',context)
+    
+###############Cart#################
+class CartView(View):
+    def get(self,request):
+        cart_items = CartItem.objects.all().order_by("-date")
+        context = {"cart_items":cart_items}
+        return render(request,"base/cart.html",context)
+    
+class AddCartView(View):
+    def get(self,request,product_slug):
+        user = self.request.user
+        product = Product.objects.get(slug=product_slug)
+        if user.is_authenticated:
+            try:
+                cart_item = CartItem.objects.get(user=user,product=product)
+                cart_item.quantity += 1
+                cart_item.save()
+            except CartItem.DoesNotExist:
+                cart_item = CartItem.objects.create(
+                    user=user,
+                    product=product
+                )
+                cart_item.save()
+            return redirect('cart')

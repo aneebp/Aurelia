@@ -66,17 +66,17 @@ class Product(models.Model):
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    Product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     date = models.DateTimeField(auto_now_add=True)
 
     #to access the totalamount like an attribute rather than a method
     @property
     def get_total_amount(self):
-        return self.Product.price * self.quantity
+        return self.product.price * self.quantity
     
     def __str__(self):
-        return  f"{self.Product.title} (Quantity: {self.quantity})"
+        return  f"{self.product.title} (Quantity: {self.quantity})"
     
 
 class Checkout(models.Model):

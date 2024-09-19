@@ -7,7 +7,7 @@
       <div class="header-right">
         <img src="img/icons/search.png" alt="" class="search-trigger" />
         <img src="img/icons/man.png" alt="" />
-        <a href="#">
+        <a href="cart/">
           <img src="img/icons/bag.png" alt="" />
           <span>2</span>
         </a>
@@ -24,20 +24,22 @@
       {% endif %}
       <nav class="main-menu mobile-menu">
         <ul>
-          <li><a class="active" href="./index.html">Home</a></li>
-          <li>
-            <a href="./categories.html">Shop</a>
-            <ul class="sub-menu">
-              <li><a href="product-page.html">Product Page</a></li>
-              <li><a href="shopping-cart.html">Shopping Card</a></li>
-              <li><a href="check-out.html">Check out</a></li>
-            </ul>
-          </li>
-          <li><a href="./product-page.html">About</a></li>
-          <li><a href="./check-out.html">Blog</a></li>
-          <li><a href="./contact.html">Contact</a></li>
+            <li>
+                <a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+                <a class="{% if request.path == '/products/' %}active{% endif %}" href="{% url 'products' %}">Shop</a>
+            </li>
+            <li>
+                <a class="{% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+            </li>
+            
+            <li>
+                <a class="{% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+            </li>
         </ul>
-      </nav>
+    </nav>
+    
     </div>
   </div>
 </header>
