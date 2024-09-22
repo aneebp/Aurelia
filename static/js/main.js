@@ -133,17 +133,40 @@
     proQty.on('click', '.qtybtn', function () {
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
+        var cartItemId = $button.parent().find('input').data('cartitem-id');
+        var newVal;
+    
         if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
+            newVal = parseFloat(oldValue) + 1;
         } else {
             // Don't allow decrementing below zero
             if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
+                newVal = parseFloat(oldValue) - 1;
             } else {
                 newVal = 0;
             }
         }
+    
         $button.parent().find('input').val(newVal);
+    
+        // Send the updated quantity to the server
+        $.ajax({
+            url: '/update-quantity/',  // Change to your URL
+            method: 'POST',
+            data: {
+                'cartitem_id': cartItemId,
+                'quantity': newVal,
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function (response) {
+                // Handle success (optional)
+                console.log('Quantity updated successfully');
+            },
+            error: function (xhr, status, error) {
+                // Handle error (optional)
+                console.log('Failed to update quantity');
+            }
+        });
     });
 
     /*-------------------

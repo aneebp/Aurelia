@@ -1,17 +1,11 @@
 from django.views import View
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from .form import RegistrationForm
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-#email verification
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import EmailMessage
+from django.http import JsonResponse
 
 
 class HomeView(View):
@@ -119,18 +113,52 @@ class CartView(View):
         return render(request,"base/cart.html",context)
     
 class AddCartView(View):
-    def get(self,request,product_slug):
-        user = self.request.user
+    def post(self, request, product_slug):
+        user = request.user
         product = Product.objects.get(slug=product_slug)
+        quantity = int(request.POST.get('quantity', 1))  # Default to 1 if no quantity is provided
+
         if user.is_authenticated:
             try:
-                cart_item = CartItem.objects.get(user=user,product=product)
-                cart_item.quantity += 1
+                cart_item = CartItem.objects.get(user=user, product=product)
+                cart_item.quantity += quantity  # Increment the quantity based on user input
                 cart_item.save()
             except CartItem.DoesNotExist:
-                cart_item = CartItem.objects.create(
+                CartItem.objects.create(
                     user=user,
-                    product=product
+                    product=product,
+                    quantity=quantity  
                 )
-                cart_item.save()
-            return redirect('cart')
+            return redirect('cart') 
+
+        
+
+class UpdateQuantityView(View):
+    def post(self, request):
+        try:
+            cartitem_id = request.POST.get('cartitem_id')
+            quantity = int(request.POST.get('quantity'))
+
+            cart_item = CartItem.objects.get(id=cartitem_id)
+            cart_item.quantity = quantity
+            cart_item.save()
+
+            return JsonResponse({'status': 'success'})
+        except CartItem.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Cart item not found'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+
+
+
+class DeleteCartView(View):
+    def post(self, request, product_slug):
+        user = request.user
+        product = Product.objects.get(slug=product_slug)
+        cartitem = CartItem.objects.get(product=product,user=user)
+        cartitem.delete()
+        return redirect('cart')
+
+
+
+

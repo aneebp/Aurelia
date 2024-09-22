@@ -56,12 +56,16 @@
             </li>
           </ul>
 
-          <div class="product-quantity">
-            <div class="pro-qty">
-              <input type="text" value="1" />
+          <form id="add-to-cart-form" method="POST" action="{% url 'add_cart' product.slug %}">
+            {% csrf_token %}
+            <div class="product-quantity">
+                <div class="pro-qty">
+                    <input type="text" name="quantity" id="quantity-input" value="1" />
+                </div>
             </div>
-          </div>
-          <a href="{% url "add_cart" product.slug %}" class="primary-btn pc-btn">Add to cart</a>
+            <button type="submit" class="primary-btn pc-btn">Add to cart</button>
+        </form>
+        
         </div>
       </div>
     </div>
